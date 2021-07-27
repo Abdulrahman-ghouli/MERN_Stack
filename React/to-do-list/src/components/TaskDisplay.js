@@ -14,12 +14,19 @@ const TaskDisplay = (props) => {
         
 
       }
+      const deletehadler =  (e) => {
+        let name  = e.target.value 
+        const ewarray = todos.filter(val => val.name !== name   )
+        setTodos(ewarray)
+
+      }
     return (
         <div>
            {
                 todos.map((eachtodo,i)  => {
                     return(<p key= {i}>{eachtodo.name}
-                      <input type ="checkbox" value= {i} onChange = {(e)=>clickhadler(e)}   checked  = {eachtodo.status}></input></p>
+                      <input type ="checkbox" value= {i} onChange = {(e)=>clickhadler(e)}   checked  = {eachtodo.status}></input>
+                      <button onClick = {(e)=>deletehadler(e)} value  = {eachtodo.name}  > Delete  </button></p>
                         )
                     
 
