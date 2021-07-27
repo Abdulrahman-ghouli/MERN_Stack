@@ -1,0 +1,5 @@
+https://pokeapi.co/api/v2/berry/2
+https://pokeapi.co/api/v2/berry/4
+https://pokeapi.co/api/v2/berry/9
+https://pokeapi.co/api/v2/berry/1
+https://pokeapi.co/api/v2/berry/3
