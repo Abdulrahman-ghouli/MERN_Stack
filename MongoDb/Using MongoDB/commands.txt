@@ -1,0 +1,1173 @@
+ use my_first_db
+switched to db my_first_db
+> db.createCollection("Students")
+{ "ok" : 1 }
+> db.Students.insert({name: "ghouli", home_state: "A", lucky_number:5},birthday: {month: 4, day: 4, year: 1996})
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:77
+> db.Students.insert({name: "ghouli", home_state: "A", lucky_number:5},birthday: {month: 4, day: 4, year: 1996}})
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:77
+> db.Students.insert({name: "ghouli", home_state: "A", lucky_number:5,birthday:{ month: 4, day: 4, year: 1996}})
+WriteResult({ "nInserted" : 1 })
+> db.Students.insert({name: "hatem", home_state: "c", lucky_number:3,birthday:{ month: 4, day: 5, year: 1998}})
+WriteResult({ "nInserted" : 1 })
+> db.Students.insert({name: "omar", home_state: "c", lucky_number:2,birthday:{ month: 4, day: 5, year: 2003}})
+WriteResult({ "nInserted" : 1 })
+> db.Students.insert({name: "ali", home_state: "c", lucky_number:2,birthday:{ month: 4, day: 5, year: 2001}})
+WriteResult({ "nInserted" : 1 })
+> db.Students.insert({name: "osama", home_state: "c", lucky_number:2,birthday:{ month: 4, day: 5, year: 1999}})
+WriteResult({ "nInserted" : 1 })
+> db.Stuedents.find().pretty()
+> db.my_first_db.find().pretty()
+> db.my_first_db.insert({name: "omar", home_state: "c", lucky_number:2,birthday:{ month: 4, day: 5, year: 2003}})
+WriteResult({ "nInserted" : 1 })
+
+> db.Students.find({home_state:"sa jose"}).pretty()
+> db.Students.find({home_state:"c"}).pretty()
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        }
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        }
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        }
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        }
+}
+
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610114f60c510cb6776f0c4b"),
+        "name" : "ghouli",
+        "home_state" : "A",
+        "lucky_number" : 5,
+        "birthday" : {
+                "month" : 4,
+                "day" : 4,
+                "year" : 1996
+        }
+}
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        }
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        }
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        }
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        }
+}
+
+> db.Students.find({lucky_number:{$gt:2}})
+{ "_id" : ObjectId("610114f60c510cb6776f0c4b"), "name" : "ghouli", "home_state" : "A", "lucky_number" : 5, "birthday" : { "month" : 4, "day" : 4, "year" : 1996 } }
+{ "_id" : ObjectId("6101151c0c510cb6776f0c4c"), "name" : "hatem", "home_state" : "c", "lucky_number" : 3, "birthday" : { "month" : 4, "day" : 5, "year" : 1998 } }
+> db.Students.find({lucky_number:{$lte:10}})
+{ "_id" : ObjectId("610114f60c510cb6776f0c4b"), "name" : "ghouli", "home_state" : "A", "lucky_number" : 5, "birthday" : { "month" : 4, "day" : 4, "year" : 1996 } }
+{ "_id" : ObjectId("6101151c0c510cb6776f0c4c"), "name" : "hatem", "home_state" : "c", "lucky_number" : 3, "birthday" : { "month" : 4, "day" : 5, "year" : 1998 } }
+{ "_id" : ObjectId("610115590c510cb6776f0c4d"), "name" : "omar", "home_state" : "c", "lucky_number" : 2, "birthday" : { "month" : 4, "day" : 5, "year" : 2003 } }
+{ "_id" : ObjectId("6101156c0c510cb6776f0c4e"), "name" : "ali", "home_state" : "c", "lucky_number" : 2, "birthday" : { "month" : 4, "day" : 5, "year" : 2001 } }
+{ "_id" : ObjectId("6101157c0c510cb6776f0c4f"), "name" : "osama", "home_state" : "c", "lucky_number" : 2, "birthday" : { "month" : 4, "day" : 5, "year" : 1999 } }
+{ "_id" : ObjectId("6101184e0c510cb6776f0c51"), "name" : "osama", "home_state" : "c", "lucky_number" : 2, "birthday" : { "month" : 4, "day" : 5, "year" : 1999 } }
+> db.Students.find({lucky_number:{$lte:10}}).pretty()
+{
+        "_id" : ObjectId("610114f60c510cb6776f0c4b"),
+        "name" : "ghouli",
+        "home_state" : "A",
+        "lucky_number" : 5,
+        "birthday" : {
+                "month" : 4,
+                "day" : 4,
+                "year" : 1996
+        }
+}
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        }
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        }
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        }
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        }
+}
+> db.Students.find({lucky_number:{$gt :  1, $lt : 9}}).pretty()
+{
+        "_id" : ObjectId("610114f60c510cb6776f0c4b"),
+        "name" : "ghouli",
+        "home_state" : "A",
+        "lucky_number" : 5,
+        "birthday" : {
+                "month" : 4,
+                "day" : 4,
+                "year" : 1996
+        }
+}
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        }
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        }
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        }
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        }
+}
+
+
+> db.Students.update({}, {$push: {interests: 'snowboarding'}},{multi:true})
+WriteResult({ "nMatched" : 6, "nUpserted" : 0, "nModified" : 6 })
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610114f60c510cb6776f0c4b"),
+        "name" : "ghouli",
+        "home_state" : "A",
+        "lucky_number" : 5,
+        "birthday" : {
+                "month" : 4,
+                "day" : 4,
+                "year" : 1996
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+
+> db.Students.update({name:omar}, {$push: {interests: 'games'}})
+uncaught exception: ReferenceError: omar is not defined :
+@(shell):1:21
+> db.Students.update({name:"omar"}, {$push: {interests: 'games'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610114f60c510cb6776f0c4b"),
+        "name" : "ghouli",
+        "home_state" : "A",
+        "lucky_number" : 5,
+        "birthday" : {
+                "month" : 4,
+                "day" : 4,
+                "year" : 1996
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding",
+                "games"
+        ]
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+
+
+> db.Students.update({name:"osama"}, {$push: {interests: 'sports'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610114f60c510cb6776f0c4b"),
+        "name" : "ghouli",
+        "home_state" : "A",
+        "lucky_number" : 5,
+        "birthday" : {
+                "month" : 4,
+                "day" : 4,
+                "year" : 1996
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding",
+                "games"
+        ]
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding",
+                "sports"
+        ]
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+> db.Students.update({name:"ali"}, {$push: {interests: 'taxes'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610114f60c510cb6776f0c4b"),
+        "name" : "ghouli",
+        "home_state" : "A",
+        "lucky_number" : 5,
+        "birthday" : {
+                "month" : 4,
+                "day" : 4,
+                "year" : 1996
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding",
+                "games"
+        ]
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding",
+                "taxes"
+        ]
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding",
+                "sports"
+        ]
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+> db.Students.update({name:"ali"}, {$pull: {interests: 'taxes'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610114f60c510cb6776f0c4b"),
+        "name" : "ghouli",
+        "home_state" : "A",
+        "lucky_number" : 5,
+        "birthday" : {
+                "month" : 4,
+                "day" : 4,
+                "year" : 1996
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding",
+                "games"
+        ]
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding",
+                "sports"
+        ]
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+> db.Students.remove({home_state:"A"})
+WriteResult({ "nRemoved" : 1 })
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("6101151c0c510cb6776f0c4c"),
+        "name" : "hatem",
+        "home_state" : "c",
+        "lucky_number" : 3,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1998
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding",
+                "games"
+        ]
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding",
+                "sports"
+        ]
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+> db.Students.remove({name:"hatem"})
+WriteResult({ "nRemoved" : 1 })
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding",
+                "games"
+        ]
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding",
+                "sports"
+        ]
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ]
+}
+> db.Students.update({}, {$push: {number_of_belts:0}},{multi:true})
+WriteResult({ "nMatched" : 4, "nUpserted" : 0, "nModified" : 4 })
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding",
+                "games"
+        ],
+        "number_of_belts" : [
+                0
+        ]
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding"
+        ],
+        "number_of_belts" : [
+                0
+        ]
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding",
+                "sports"
+        ],
+        "number_of_belts" : [
+                0
+        ]
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ],
+        "number_of_belts" : [
+                0
+        ]
+}
+
+> db.Students.update({}, {$rename:{"number_of_belts":"belts_earned"}}, false, true);
+WriteResult({ "nMatched" : 4, "nUpserted" : 0, "nModified" : 4 })
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding",
+                "games"
+        ],
+        "belts_earned" : [
+                0
+        ]
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding"
+        ],
+        "belts_earned" : [
+                0
+        ]
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding",
+                "sports"
+        ],
+        "belts_earned" : [
+                0
+        ]
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ],
+        "belts_earned" : [
+                0
+        ]
+}
+> db.Students.updateMany({},{$set:{update_:"27/7/2021"})
+...
+...
+> db.Students.updateMany({},{$set:{update_:"27/7/2021"}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+> db.Students.find().pretty()
+{
+        "_id" : ObjectId("610115590c510cb6776f0c4d"),
+        "name" : "omar",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2003
+        },
+        "interests" : [
+                "snowboarding",
+                "games"
+        ],
+        "belts_earned" : [
+                0
+        ],
+        "update_" : "27/7/2021"
+}
+{
+        "_id" : ObjectId("6101156c0c510cb6776f0c4e"),
+        "name" : "ali",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 2001
+        },
+        "interests" : [
+                "snowboarding"
+        ],
+        "belts_earned" : [
+                0
+        ],
+        "update_" : "27/7/2021"
+}
+{
+        "_id" : ObjectId("6101157c0c510cb6776f0c4f"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding",
+                "sports"
+        ],
+        "belts_earned" : [
+                0
+        ],
+        "update_" : "27/7/2021"
+}
+{
+        "_id" : ObjectId("6101184e0c510cb6776f0c51"),
+        "name" : "osama",
+        "home_state" : "c",
+        "lucky_number" : 2,
+        "birthday" : {
+                "month" : 4,
+                "day" : 5,
+                "year" : 1999
+        },
+        "interests" : [
+                "snowboarding"
+        ],
+        "belts_earned" : [
+                0
+        ],
+        "update_" : "27/7/2021"
+}
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
