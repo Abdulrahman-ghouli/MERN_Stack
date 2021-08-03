@@ -15,12 +15,15 @@ const Main  = () => {
               setLoaded(true);
              
           }).catch(res => console.log(res.json.status(400)) );
-  },[])
+  },[products])
+  const removeFromDom = productId => {
+    setProducts(products.filter(product => product._id !== productId));
+}
     return (
         <div>
         <PersonForm/>
         <hr/>
-        {loaded && <ProductsList products={products}/>}
+        {loaded && <ProductsList products={products} removeFromDom={removeFromDom}/>}
      </div>
 
     )
